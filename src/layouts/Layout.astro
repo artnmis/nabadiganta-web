@@ -92,23 +92,16 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
       });
     </script>
     <script is:inline>
-      if (window.netlifyIdentity) {
-        // ১. যখনই পেজ লোড হবে, সে চেক করবে কোনো ইনভাইট টোকেন আছে কি না
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            // ২. যদি ইউজার লগইন করা না থাকে, তবে লগইন ইভেন্টে তাকে অ্যাডমিন প্যানেলে পাঠাও
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
+      document.addEventListener('DOMContentLoaded', () => {
+        if (window.netlifyIdentity) {
+          // যদি ইউআরএল-এ টোকেন থাকে, তবে ২ সেকেন্ড অপেক্ষা করে বক্সটি ওপেন করো
+          if (window.location.hash.includes("invite_token") || window.location.hash.includes("recovery_token")) {
+            setTimeout(() => {
+              window.netlifyIdentity.open('signup'); 
+            }, 2000);
           }
-        });
-    
-        // ৩. ইনভাইট লিঙ্কে ক্লিক করলে যেন পপআপ অটোমেটিক খুলে যায়
-        const urlParams = new URLSearchParams(window.location.hash.replace('#', '?'));
-        if (urlParams.has('invite_token') || urlParams.has('recovery_token')) {
-          window.netlifyIdentity.open();
         }
-      }
+      });
     </script>
   </body>
 </html>
