@@ -2,7 +2,6 @@
 const { title } = Astro.props;
 const pathname = new URL(Astro.request.url).pathname;
 import '../styles/global.css';
-import ContactModal from '../components/ContactOverlay.jsx';
 import ContactOverlay from '../components/ContactOverlay.jsx';
 ---
 
@@ -54,7 +53,7 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
                 Contact Us
               </button>
         
-              <div class="absolute right-0 top-full">
+              <div class="absolute right-0 top-full mt-8 z-[60]">
                  <ContactOverlay client:only="react" />
               </div>
             </div>
@@ -69,8 +68,6 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
       </div>
     </header>
 
-    <ContactModal client:only="react" />
-
     <main class="min-h-screen">
       <slot /> 
     </main>
@@ -81,10 +78,12 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
 
     <script>
       const btn = document.getElementById('contact-trigger');
-      btn?.addEventListener('click', () => {
+      btn?.addEventListener('click', (e) => {
+        e.stopPropagation(); // ইভেন্ট যেন ডুপ্লিকেট না হয়
         window.dispatchEvent(new CustomEvent('open-contact-modal'));
       });
     </script>
+
     <script>
       import netlifyIdentity from 'netlify-identity-widget';
       netlifyIdentity.init();
