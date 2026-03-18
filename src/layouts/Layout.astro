@@ -16,13 +16,10 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
   </head>
   <body class="bg-slate-50 text-slate-900 font-['Hind_Siliguri',_sans-serif]">
     <script is:inline>
-      // TypeScript কে জানানোর জন্য যে netlifyIdentity উইন্ডোতে আছে
-      const netIdentity = window.netlifyIdentity;
-    
-      if (netIdentity) {
-        netIdentity.on("init", (user) => {
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
           if (!user) {
-            netIdentity.on("login", () => {
+            window.netlifyIdentity.on("login", () => {
               document.location.href = "/admin/";
             });
           }
