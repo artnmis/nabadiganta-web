@@ -29,28 +29,10 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
 
         <nav class="bg-slate-100/80 p-1.5 rounded-full border border-slate-200 hidden md:block shadow-inner">
           <div class="flex items-center space-x-1 font-semibold text-slate-600 text-sm lg:text-base">
-            
-            <a href="/about" 
-               class={`px-6 py-2 rounded-full transition-all duration-300 ${pathname === '/about' ? 'bg-blue-600 text-white shadow-md' : 'hover:bg-white hover:text-blue-600'}`}>
-               About Us
-            </a>
-        
-            <a href="/initiatives" 
-               class={`px-6 py-2 rounded-full transition-all duration-300 ${pathname.startsWith('/initiatives') ? 'bg-blue-600 text-white shadow-md' : 'hover:bg-white hover:text-blue-600'}`}>
-               Initiatives
-            </a>
-        
-            <a href="/notices" 
-               class={`px-6 py-2 rounded-full transition-all duration-300 ${pathname.startsWith("/notices") ? 'bg-blue-600 text-white shadow-md' : 'hover:bg-white hover:text-blue-600'}`}>
-               Notices
-            </a>
-        
-            <button 
-              id="contact-trigger"
-              class="px-6 py-2 rounded-full transition-all duration-300 hover:bg-white hover:text-blue-600 cursor-pointer outline-none"
-            >
-              Contact Us
-            </button>
+            <a href="/about" class={`px-6 py-2 rounded-full transition-all duration-300 ${pathname === '/about' ? 'bg-blue-600 text-white shadow-md' : 'hover:bg-white hover:text-blue-600'}`}>About Us</a>
+            <a href="/initiatives" class={`px-6 py-2 rounded-full transition-all duration-300 ${pathname.startsWith('/initiatives') ? 'bg-blue-600 text-white shadow-md' : 'hover:bg-white hover:text-blue-600'}`}>Initiatives</a>
+            <a href="/notices" class={`px-6 py-2 rounded-full transition-all duration-300 ${pathname.startsWith("/notices") ? 'bg-blue-600 text-white shadow-md' : 'hover:bg-white hover:text-blue-600'}`}>Notices</a>
+            <button id="contact-trigger" class="px-6 py-2 rounded-full transition-all duration-300 hover:bg-white hover:text-blue-600 cursor-pointer outline-none">Contact Us</button>
           </div>
         </nav>
 
@@ -70,7 +52,7 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
       <slot /> 
     </main>
 
-    <footer class="p-8 bg-slate-800 text-white text-center mt-20">
+    <footer class="p-8 bg-slate-800 text-white text-center relative z-10">
       <p>© 2026 নবদিগন্ত যুব ফাউন্ডেশন - সর্বস্বত্ব সংরক্ষিত।</p>
     </footer>
 
