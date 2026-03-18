@@ -1,0 +1,28 @@
+backend:
+  name: git-gateway
+  branch: main # তোমার গিটহাব ব্রাঞ্চের নাম
+
+media_folder: "public/images/uploads" # ছবিগুলো যেখানে জমা হবে
+public_folder: "/images/uploads"
+
+collections:
+  - name: "initiatives" # উদ্যোগসমূহ
+    label: "Initiatives"
+    folder: "src/content/initiatives" # ডেটা যেখানে সেভ হবে
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Featured Image", name: "image", widget: "image" }
+      - { label: "Date", name: "date", widget: "datetime" }
+
+  - name: "notices" # নোটিশ বোর্ড
+    label: "Notices"
+    folder: "src/content/notices"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Notice Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Notice Content", name: "body", widget: "markdown" }

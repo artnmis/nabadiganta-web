@@ -1,0 +1,30 @@
+@import "tailwindcss";
+/* ১. ডিফল্ট স্ক্রলবার সেটিংস */
+html::-webkit-scrollbar {
+    width: 10px; /* স্ক্রলবারের চওড়া */
+  }
+  
+  html::-webkit-scrollbar-track {
+    background: transparent; /* ট্র্যাক সবসময় ইনভিজিবল */
+  }
+  
+  /* ২. স্ক্রলবারের হাতল (Thumb) - সবসময় স্বচ্ছ থাকবে */
+  html::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  
+  /* ৩. ম্যাজিক পার্ট: শুধুমাত্র যখন মাউস সরাসরি স্ক্রলবারের ওপরে (ডান কিনারায়) যাবে */
+  html::-webkit-scrollbar-thumb:hover {
+    background-color: #cbd5e1 !important; /* হালকা স্লেট রঙ */
+  }
+  
+  /* ৪. যখন ইউজার স্ক্রল করছে (মাউস চেপে ধরে) তখন দৃশ্যমান থাকবে */
+  html::-webkit-scrollbar-thumb:active {
+    background-color: #94a3b8 !important;
+  }
+  
+  
+  

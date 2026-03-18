@@ -1,0 +1,93 @@
+---
+const { title } = Astro.props;
+const pathname = new URL(Astro.request.url).pathname;
+import '../styles/global.css';
+import ContactModal from '../components/ContactOverlay.jsx'; // তোমার তৈরি করা মোডালটি ইম্পোর্ট করো
+import ContactOverlay from '../components/ContactOverlay.jsx';
+---
+
+<html lang="bn">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-slate-50 text-slate-900 font-['Hind_Siliguri',_sans-serif]">
+    
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 py-3 px-4 md:px-10">
+      <div class="max-w-[1600px] mx-auto flex items-center justify-between gap-4">
+        
+        <div class="flex items-center gap-6 md:gap-10 shrink-0">
+          <a href="/" class="hover:opacity-90 transition">
+            <img src="/logo.png" alt="লোগো" class="h-14 md:h-20 w-auto object-contain" />
+          </a>
+          
+          <h1 class="hidden lg:block text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent leading-relaxed py-1 font-['Noto_Sans_Bengali',_sans-serif]">
+            ভবিষ্যৎ গড়ি একতাবদ্ধ হয়ে
+          </h1>
+        </div>
+
+        <nav class="bg-slate-100/80 p-1.5 rounded-full border border-slate-200 hidden md:block shadow-inner">
+          <div class="flex items-center space-x-1 font-semibold text-slate-600 text-sm lg:text-base">
+            
+            <a href="/about" 
+               class={`px-6 py-2 rounded-full transition-all duration-300 ${pathname === '/about' ? 'bg-blue-600 text-white shadow-md' : 'hover:bg-white hover:text-blue-600'}`}>
+               About Us
+            </a>
+        
+            <a href="/initiatives" 
+               class={`px-6 py-2 rounded-full transition-all duration-300 ${pathname === '/initiatives' ? 'bg-blue-600 text-white shadow-md' : 'hover:bg-white hover:text-blue-600'}`}>
+               Initiatives
+            </a>
+        
+            <a href="/notices" 
+               class={`px-6 py-2 rounded-full transition-all duration-300 ${pathname === '/notices' ? 'bg-blue-600 text-white shadow-md' : 'hover:bg-white hover:text-blue-600'}`}>
+               Notices
+            </a>
+        
+            <div class="relative inline-block">
+              <button 
+                id="contact-trigger"
+                class="px-6 py-2 rounded-full transition-all duration-300 hover:bg-white hover:text-blue-600 cursor-pointer outline-none"
+              >
+                Contact Us
+              </button>
+        
+              <div class="absolute right-0 top-full">
+                 <ContactOverlay client:only="react" />
+              </div>
+            </div>
+        
+          </div>
+        </nav>
+          </div>
+        </nav>
+
+        <button class="md:hidden p-2 text-slate-600 bg-slate-100 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <ContactModal client:only="react" />
+
+    <main class="min-h-screen">
+      <slot /> 
+    </main>
+
+    <footer class="p-8 bg-slate-800 text-white text-center mt-20">
+      <p>© 2026 নবদিগন্ত যুব ফাউন্ডেশন - সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <script>
+      const btn = document.getElementById('contact-trigger');
+      btn?.addEventListener('click', () => {
+        // একটি কাস্টম ইভেন্ট পাঠানো হচ্ছে যা ContactModal শুনতে পাবে
+        window.dispatchEvent(new CustomEvent('open-contact-modal'));
+      });
+    </script>
+  </body>
+</html>
