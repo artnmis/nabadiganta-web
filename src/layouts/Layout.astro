@@ -12,7 +12,6 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body class="bg-slate-50 text-slate-900 font-['Hind_Siliguri',_sans-serif]">
     
@@ -91,16 +90,20 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
         window.dispatchEvent(new CustomEvent('open-contact-modal'));
       });
     </script>
-    <script is:inline>
-      document.addEventListener('DOMContentLoaded', () => {
-        if (window.netlifyIdentity) {
-          // যদি ইউআরএল-এ টোকেন থাকে, তবে ২ সেকেন্ড অপেক্ষা করে বক্সটি ওপেন করো
-          if (window.location.hash.includes("invite_token") || window.location.hash.includes("recovery_token")) {
-            setTimeout(() => {
-              window.netlifyIdentity.open('signup'); 
-            }, 2000);
-          }
-        }
+    <script>
+      import netlifyIdentity from 'netlify-identity-widget';
+    
+      // উইজেট শুরু করা
+      netlifyIdentity.init();
+    
+      // ইনভাইট টোকেন থাকলে অটোমেটিক ওপেন হবে
+      if (window.location.hash.includes("invite_token")) {
+        netlifyIdentity.open('signup');
+      }
+    
+      // লগইন করার পর অ্যাডমিন প্যানেলে পাঠানো
+      netlifyIdentity.on('login', () => {
+        document.location.href = "/admin/";
       });
     </script>
   </body>
