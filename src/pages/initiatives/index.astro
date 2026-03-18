@@ -1,0 +1,91 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+// টাইপস্ক্রিপ্ট এরর ফিক্স করার জন্য এই টাইপটি ইমপোর্ট করছি
+import type { CollectionEntry } from 'astro:content';
+
+// CMS থেকে সব Initiatives সংগ্রহ করা
+const allInitiatives = await getCollection('initiatives');
+
+// তারিখ অনুযায়ী সাজানো (নতুন উদ্যোগগুলো আগে দেখাবে)
+// তারিখ অনুযায়ী সাজানো (নতুন উদ্যোগগুলো আগে দেখাবে)
+const sortedInitiatives = allInitiatives.sort((a: CollectionEntry<'initiatives'>, b: CollectionEntry<'initiatives'>) => {
+  return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+});
+---
+
+<Layout title="আমাদের উদ্যোগসমূহ | নবদিগন্ত ফাউন্ডেশন">
+  <section class="py-16 bg-slate-50 min-h-screen">
+    <div class="container mx-auto px-4">
+      
+      <div class="max-w-3xl mb-16">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+          আমাদের <span class="text-blue-600">উদ্যোগসমূহ</span>
+        </h1>
+        <p class="text-lg text-slate-600 leading-relaxed">
+          নবদিগন্ত ফাউন্ডেশন সমাজের পিছিয়ে পড়া মানুষের কল্যাণে এবং যুব সমাজের উন্নয়নে নিরলসভাবে কাজ করে যাচ্ছে। আমাদের উল্লেখযোগ্য কিছু কার্যক্রম নিচে তুলে ধরা হলো।
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {sortedInitiatives.map((item: CollectionEntry<'initiatives'>) => (
+          <div class="group bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col">
+            
+            {item.data.image && (
+              <div class="relative overflow-hidden h-64">
+                <img 
+                  src={item.data.image} 
+                  alt={item.data.title} 
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
+            )}
+            
+            <div class="p-8 flex-grow flex flex-col">
+              <div class="mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-500 bg-blue-50 px-3 py-1 rounded-full">
+                  {new Date(item.data.date).toLocaleDateString('bn-BD', { year: 'numeric', month: 'long' })}
+                </span>
+              </div>
+              
+              <h2 class="text-2xl font-bold mb-4 text-slate-800 group-hover:text-blue-600 transition-colors">
+                {item.data.title}
+              </h2>
+              
+              <p class="text-slate-600 mb-8 line-clamp-3 text-sm leading-relaxed">
+                {item.data.description}
+              </p>
+              
+              <div class="mt-auto">
+                <a 
+                  href={`/initiatives/${item.slug}`} 
+                  class="inline-flex items-center font-bold text-slate-900 hover:text-blue-600 transition-all group/link"
+                >
+                  বিস্তারিত পড়ুন 
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover/link:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {sortedInitiatives.length === 0 && (
+        <div class="text-center py-20 bg-white rounded-[2rem] border border-dashed border-slate-200">
+          <p class="text-slate-400 text-lg">আপাতত কোনো উদ্যোগ যুক্ত করা হয়নি।</p>
+        </div>
+      )}
+
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* বাংলা ফন্ট সুন্দর দেখানোর জন্য সামান্য অপ্টিমাইজেশন */
+  h1, h2 {
+    line-height: 1.4;
+  }
+</style>
