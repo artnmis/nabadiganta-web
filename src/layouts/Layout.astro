@@ -15,17 +15,7 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body class="bg-slate-50 text-slate-900 font-['Hind_Siliguri',_sans-serif]">
-    <script is:inline>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
-    </script>
+    
     
     <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 py-3 px-4 md:px-10">
       <div class="max-w-[1600px] mx-auto flex items-center justify-between gap-4">
@@ -100,6 +90,25 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
         // একটি কাস্টম ইভেন্ট পাঠানো হচ্ছে যা ContactModal শুনতে পাবে
         window.dispatchEvent(new CustomEvent('open-contact-modal'));
       });
+    </script>
+    <script is:inline>
+      if (window.netlifyIdentity) {
+        // ১. যখনই পেজ লোড হবে, সে চেক করবে কোনো ইনভাইট টোকেন আছে কি না
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            // ২. যদি ইউজার লগইন করা না থাকে, তবে লগইন ইভেন্টে তাকে অ্যাডমিন প্যানেলে পাঠাও
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+    
+        // ৩. ইনভাইট লিঙ্কে ক্লিক করলে যেন পপআপ অটোমেটিক খুলে যায়
+        const urlParams = new URLSearchParams(window.location.hash.replace('#', '?'));
+        if (urlParams.has('invite_token') || urlParams.has('recovery_token')) {
+          window.netlifyIdentity.open();
+        }
+      }
     </script>
   </body>
 </html>
