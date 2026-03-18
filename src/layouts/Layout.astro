@@ -45,18 +45,12 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
                Notices
             </a>
         
-            <div class="relative inline-block">
-              <button 
-                id="contact-trigger"
-                class="px-6 py-2 rounded-full transition-all duration-300 hover:bg-white hover:text-blue-600 cursor-pointer outline-none"
-              >
-                Contact Us
-              </button>
-        
-              <div class="absolute right-0 top-full mt-8 z-[60]">
-                 <ContactOverlay client:only="react" />
-              </div>
-            </div>
+            <button 
+              id="contact-trigger"
+              class="px-6 py-2 rounded-full transition-all duration-300 hover:bg-white hover:text-blue-600 cursor-pointer outline-none"
+            >
+              Contact Us
+            </button>
           </div>
         </nav>
 
@@ -67,6 +61,10 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
         </button>
       </div>
     </header>
+
+    <div class="fixed top-24 right-4 md:right-10 z-[100]">
+       <ContactOverlay client:only="react" />
+    </div>
 
     <main class="min-h-screen">
       <slot /> 
@@ -79,7 +77,7 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
     <script>
       const btn = document.getElementById('contact-trigger');
       btn?.addEventListener('click', (e) => {
-        e.stopPropagation(); // ইভেন্ট যেন ডুপ্লিকেট না হয়
+        e.stopPropagation();
         window.dispatchEvent(new CustomEvent('open-contact-modal'));
       });
     </script>
