@@ -1,14 +1,118 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import HeroButton from '../components/HeroButton.jsx';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+const allInitiatives = await getCollection('initiatives');
+const recentInitiatives = allInitiatives
+  .sort((a: CollectionEntry<'initiatives'>, b: CollectionEntry<'initiatives'>) => 
+    new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+  )
+  .slice(0, 3);
 ---
 
 <Layout title="হোম | নবদিগন্ত যুব ফাউন্ডেশন">
-  <section class="min-h-[50vh] flex flex-col items-center justify-center bg-white py-20 text-center px-4">
-    <div class="mb-12">
-      
-       <HeroButton client:load />
+  <section class="relative h-screen w-full flex items-center justify-center overflow-hidden px-6 bg-slate-900">
+    <div class="absolute inset-0 z-0">
+      <img src="/bg.jpg" alt="Background" class="w-full h-full object-cover opacity-60" />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80"></div>
     </div>
 
-    </section>
+    <div class="relative z-10 w-full h-full flex flex-col justify-between py-24 pointer-events-none">
+      <div class="self-end max-w-xl text-right">
+        <h2 class="text-sm font-bold text-blue-400 uppercase tracking-widest mb-4 drop-shadow-md">আমাদের লক্ষ্য ও উদ্দেশ্য</h2>
+        <p class="text-2xl md:text-4xl font-medium text-white leading-snug italic drop-shadow-xl">
+          "নবদিগন্ত যুব ফাউন্ডেশন ২০২৫ সালে বান্দরবানের লামায় প্রতিষ্ঠিত একটি যুব-নেতৃত্বাধীন স্বেচ্ছাসেবী সংগঠন। আমাদের মূল লক্ষ্য হলো সৎ, দক্ষ ও কর্মঠ যুব সমাজ গঠনের মাধ্যমে সামাজিক উন্নয়ন ও মানবিক সেবায় অগ্রণী ভূমিকা পালন করা।"
+        </p>
+      </div>
+
+      <div class="self-start max-w-xl text-left">
+        <h2 class="text-xs font-bold text-slate-300 uppercase tracking-widest mb-4 font-sans drop-shadow-md">Our Mission</h2>
+        <p class="text-xl md:text-2xl font-light text-slate-100 leading-relaxed font-sans drop-shadow-xl">
+          "Established in 2025 in Lama, Bandarban, Nabadiganta Youth Foundation is a youth-led group dedicated to community & humanitarian service. Our primary goal is to nurture honest and skillful youth to lead sustainable social change."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-900 py-12 border-t border-white/10">
+    <div class="container mx-auto px-6">
+      <div class="relative group max-w-5xl mx-auto">
+        
+        <div id="slider" class="relative h-64 md:h-80 overflow-hidden rounded-[2.5rem] bg-white/5 border border-white/10 shadow-2xl">
+          {recentInitiatives.map((item, index) => (
+            <a 
+              href={`/initiatives/${item.id}`}
+              class={`slider-item absolute inset-0 flex flex-col md:flex-row items-center p-8 md:p-12 transition-all duration-1000 ease-in-out ${index === 0 ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'}`}
+              data-index={index}
+            >
+              <div class="w-full md:w-2/5 h-40 md:h-full overflow-hidden rounded-3xl shadow-2xl mb-6 md:mb-0">
+                <img src={item.data.image} alt={item.data.title} class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700" />
+              </div>
+              <div class="md:ml-12 text-center md:text-left flex-1">
+                <span class="inline-block text-xs font-bold text-blue-400 uppercase tracking-[0.2em] mb-4">Featured Initiative</span>
+                <h3 class="text-white text-2xl md:text-4xl font-bold leading-tight mb-6">{item.data.title}</h3>
+                <span class="text-white/60 font-medium inline-flex items-center group/btn">
+                  বিস্তারিত দেখুন 
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transform group-hover/btn:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <div class="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-8 z-30">
+          <button id="prevBtn" class="p-4 rounded-full bg-white/10 hover:bg-blue-600 text-white transition-all border border-white/10 backdrop-blur-md">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          </button>
+        </div>
+        <div class="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-8 z-30">
+          <button id="nextBtn" class="p-4 rounded-full bg-white/10 hover:bg-blue-600 text-white transition-all border border-white/10 backdrop-blur-md">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<script>
+  let currentIndex = 0;
+  const slides = document.querySelectorAll('.slider-item');
+  const totalSlides = slides.length;
+
+  function showSlide(index: number) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove('opacity-100', 'translate-x-0', 'z-10');
+      slide.classList.add('opacity-0', 'translate-x-full', 'z-0');
+      if (i === index) {
+        slide.classList.remove('opacity-0', 'translate-x-full', 'z-0');
+        slide.classList.add('opacity-100', 'translate-x-0', 'z-10');
+      }
+    });
+    currentIndex = index;
+  }
+
+  function nextSlide() {
+    showSlide((currentIndex + 1) % totalSlides);
+  }
+
+  function prevSlide() {
+    showSlide((currentIndex - 1 + totalSlides) % totalSlides);
+  }
+
+  let slideInterval = setInterval(nextSlide, 5000);
+
+  document.getElementById('nextBtn')?.addEventListener('click', () => {
+    clearInterval(slideInterval);
+    nextSlide();
+    slideInterval = setInterval(nextSlide, 5000);
+  });
+
+  document.getElementById('prevBtn')?.addEventListener('click', () => {
+    clearInterval(slideInterval);
+    prevSlide();
+    slideInterval = setInterval(nextSlide, 5000);
+  });
+</script>

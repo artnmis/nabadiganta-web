@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+// সব নোটিশ সংগ্রহ করা এবং তারিখ অনুযায়ী সাজানো
+const allNotices = await getCollection('notices');
+const sortedNotices = allNotices.sort((a, b) => 
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+---
+
+<Layout title="নোটিশ বোর্ড | নবদিগন্ত যুব ফাউন্ডেশন">
+  <section class="py-20 bg-slate-50 min-h-screen">
+    <div class="container mx-auto px-4 max-w-4xl">
+      
+      <div class="text-center mb-16">
+        <h1 class="text-4xl font-extrabold text-slate-900 mb-4">নোটিশ বোর্ড</h1>
+        <p class="text-slate-600">ফাউন্ডেশনের সর্বশেষ ঘোষণা ও আপডেটসমূহ এখানে পাওয়া যাবে।</p>
+      </div>
+
+      <div class="space-y-6">
+        {sortedNotices.map(async (notice) => {
+          const { Content } = await render(notice);
+          return (
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex items-center space-x-4 mb-4">
+                <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase">
+                  {new Date(notice.data.date).toLocaleDateString('bn-BD', { day: 'numeric', month: 'long', year: 'numeric' })}
+                </span>
+              </div>
+              
+              <h2 class="text-2xl font-bold text-slate-800 mb-4">{notice.data.title}</h2>
+              
+              <div class="prose prose-slate max-w-none text-slate-600">
+                <Content />
+              </div>
+            </div>
+          );
+        })}
+
+        {sortedNotices.length === 0 && (
+          <div class="text-center py-20 bg-white rounded-3xl border border-dashed border-slate-300 text-slate-400">
+            বর্তমানে কোনো নোটিশ নেই।
+          </div>
+        )}
+      </div>
+
+    </div>
+  </section>
+</Layout>

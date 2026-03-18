@@ -2,7 +2,7 @@
 const { title } = Astro.props;
 const pathname = new URL(Astro.request.url).pathname;
 import '../styles/global.css';
-import ContactModal from '../components/ContactOverlay.jsx'; // তোমার তৈরি করা মোডালটি ইম্পোর্ট করো
+import ContactModal from '../components/ContactOverlay.jsx';
 import ContactOverlay from '../components/ContactOverlay.jsx';
 ---
 
@@ -15,7 +15,6 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
   </head>
   <body class="bg-slate-50 text-slate-900 font-['Hind_Siliguri',_sans-serif]">
     
-    
     <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 py-3 px-4 md:px-10">
       <div class="max-w-[1600px] mx-auto flex items-center justify-between gap-4">
         
@@ -25,7 +24,7 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
           </a>
           
           <h1 class="hidden lg:block text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent leading-relaxed py-1 font-['Noto_Sans_Bengali',_sans-serif]">
-            ভবিষ্যৎ গড়ি একতাবদ্ধ হয়ে
+            ভবিষ্যৎ গড়ি একতাবদ্ধ হয়ে
           </h1>
         </div>
 
@@ -38,12 +37,12 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
             </a>
         
             <a href="/initiatives" 
-               class={`px-6 py-2 rounded-full transition-all duration-300 ${pathname === '/initiatives' ? 'bg-blue-600 text-white shadow-md' : 'hover:bg-white hover:text-blue-600'}`}>
+               class={`px-6 py-2 rounded-full transition-all duration-300 ${pathname.startsWith('/initiatives') ? 'bg-blue-600 text-white shadow-md' : 'hover:bg-white hover:text-blue-600'}`}>
                Initiatives
             </a>
         
             <a href="/notices" 
-               class={`px-6 py-2 rounded-full transition-all duration-300 ${pathname === '/notices' ? 'bg-blue-600 text-white shadow-md' : 'hover:bg-white hover:text-blue-600'}`}>
+               class={`px-6 py-2 rounded-full transition-all duration-300 ${pathname.startsWith("/notices") ? 'bg-blue-600 text-white shadow-md' : 'hover:bg-white hover:text-blue-600'}`}>
                Notices
             </a>
         
@@ -59,9 +58,6 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
                  <ContactOverlay client:only="react" />
               </div>
             </div>
-        
-          </div>
-        </nav>
           </div>
         </nav>
 
@@ -86,22 +82,15 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
     <script>
       const btn = document.getElementById('contact-trigger');
       btn?.addEventListener('click', () => {
-        // একটি কাস্টম ইভেন্ট পাঠানো হচ্ছে যা ContactModal শুনতে পাবে
         window.dispatchEvent(new CustomEvent('open-contact-modal'));
       });
     </script>
     <script>
       import netlifyIdentity from 'netlify-identity-widget';
-    
-      // উইজেট শুরু করা
       netlifyIdentity.init();
-    
-      // ইনভাইট টোকেন থাকলে অটোমেটিক ওপেন হবে
       if (window.location.hash.includes("invite_token")) {
         netlifyIdentity.open('signup');
       }
-    
-      // লগইন করার পর অ্যাডমিন প্যানেলে পাঠানো
       netlifyIdentity.on('login', () => {
         document.location.href = "/admin/";
       });
