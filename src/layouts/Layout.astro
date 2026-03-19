@@ -18,16 +18,19 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
     <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 py-3 px-4 md:px-10">
       <div class="max-w-[1600px] mx-auto flex items-center justify-between gap-4 relative">
         
-        <div class="flex items-center gap-6 md:gap-10 shrink-0">
+        <div class="flex items-center gap-3 md:gap-10 shrink-0">
           <a href="/" class="hover:opacity-90 transition">
-            <img src="/logo.png" alt="লোগো" class="h-14 md:h-20 w-auto object-contain" />
+            <img src="/logo.png" alt="লোগো" class="h-12 md:h-20 w-auto object-contain" />
           </a>
-          <h1 class="hidden lg:block text-2xl md:text-3xl font-bold bg-gradient-to-r from-red-600 to-indigo-600 bg-clip-text text-transparent leading-relaxed py-1 font-['Noto_Sans_Bengali',_sans-serif]">
-            নবদিগন্ত যুব ফাউন্ডেশন
-          </h1>
-          <h1 class="hidden lg:block text-2xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-red-600 bg-clip-text text-transparent leading-relaxed py-1 font-['Noto_Sans_Bengali',_sans-serif]">
-            ভবিষ্যৎ গড়ি একতাবদ্ধ হয়ে
-          </h1>
+          
+          <div class="flex flex-col justify-center">
+            <h1 class="text-lg md:text-3xl font-bold bg-gradient-to-r from-red-600 to-indigo-600 bg-clip-text text-transparent leading-tight font-['Noto_Sans_Bengali',_sans-serif]">
+              নবদিগন্ত যুব ফাউন্ডেশন
+            </h1>
+            <h1 class="text-[10px] md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-red-600 bg-clip-text text-transparent leading-tight font-['Noto_Sans_Bengali',_sans-serif]">
+              ভবিষ্যৎ গড়ি একতাবদ্ধ হয়ে
+            </h1>
+          </div>
         </div>
 
         <nav class="bg-slate-100/80 p-1.5 rounded-full border border-slate-200 hidden md:block shadow-inner">
@@ -84,23 +87,20 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
       const desktopContactBtn = document.getElementById('contact-trigger');
       const mobileContactBtn = document.getElementById('mobile-contact-trigger');
 
-      // Toggle Mobile Menu Visibility
       menuToggle?.addEventListener('click', (e) => {
         e.stopPropagation();
         mobileMenu?.classList.toggle('hidden');
       });
 
-      // Unified Contact Modal Function
       const handleContactClick = (e: MouseEvent) => {
         e.stopPropagation();
         window.dispatchEvent(new CustomEvent('open-contact-modal'));
-        mobileMenu?.classList.add('hidden'); // Close menu if open
+        mobileMenu?.classList.add('hidden');
       };
 
       desktopContactBtn?.addEventListener('click', handleContactClick);
       mobileContactBtn?.addEventListener('click', handleContactClick);
 
-      // Close menu when clicking outside
       document.addEventListener('click', (e) => {
         const target = e.target as Node;
         if (!menuToggle?.contains(target) && !mobileMenu?.contains(target)) {
