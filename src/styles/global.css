@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 /* ১. ডিফল্ট স্ক্রলবার সেটিংস */
 html::-webkit-scrollbar {
     width: 10px; /* স্ক্রলবারের চওড়া */
