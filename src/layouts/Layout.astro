@@ -16,7 +16,7 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
   <body class="bg-slate-50 text-slate-900 font-['Hind_Siliguri',_sans-serif]">
     
     <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 py-3 px-4 md:px-10">
-      <div class="max-w-[1600px] mx-auto flex items-center justify-between gap-4">
+      <div class="max-w-[1600px] mx-auto flex items-center justify-between gap-4 relative">
         
         <div class="flex items-center gap-6 md:gap-10 shrink-0">
           <a href="/" class="hover:opacity-90 transition">
@@ -39,11 +39,20 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
           </div>
         </nav>
 
-        <button class="md:hidden p-2 text-slate-600 bg-slate-100 rounded-full">
+        <button id="menu-toggle" class="md:hidden p-2 text-slate-600 bg-slate-100 rounded-full focus:outline-none active:scale-95 transition-transform">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
           </svg>
         </button>
+
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white border-b border-slate-100 shadow-xl z-50 md:hidden overflow-hidden">
+          <div class="flex flex-col p-4 space-y-2 font-semibold text-slate-600">
+            <a href="/about" class={`px-4 py-3 rounded-xl transition-colors ${pathname === '/about' ? 'bg-blue-50 text-blue-600' : 'active:bg-slate-50'}`}>About Us</a>
+            <a href="/initiatives" class={`px-4 py-3 rounded-xl transition-colors ${pathname.startsWith('/initiatives') ? 'bg-blue-50 text-blue-600' : 'active:bg-slate-50'}`}>Initiatives</a>
+            <a href="/notices" class={`px-4 py-3 rounded-xl transition-colors ${pathname.startsWith('/notices') ? 'bg-blue-50 text-blue-600' : 'active:bg-slate-50'}`}>Notices</a>
+            <button id="mobile-contact-trigger" class="text-left px-4 py-3 rounded-xl active:bg-slate-50 text-blue-600">Contact Us</button>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -70,13 +79,35 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
     </footer>
 
     <script>
-      const btn = document.getElementById('contact-trigger');
-      btn?.addEventListener('click', (e) => {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const desktopContactBtn = document.getElementById('contact-trigger');
+      const mobileContactBtn = document.getElementById('mobile-contact-trigger');
+
+      // Toggle Mobile Menu Visibility
+      menuToggle?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mobileMenu?.classList.toggle('hidden');
+      });
+
+      // Unified Contact Modal Function
+      const handleContactClick = (e: MouseEvent) => {
         e.stopPropagation();
         window.dispatchEvent(new CustomEvent('open-contact-modal'));
+        mobileMenu?.classList.add('hidden'); // Close menu if open
+      };
+
+      desktopContactBtn?.addEventListener('click', handleContactClick);
+      mobileContactBtn?.addEventListener('click', handleContactClick);
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        const target = e.target as Node;
+        if (!menuToggle?.contains(target) && !mobileMenu?.contains(target)) {
+          mobileMenu?.classList.add('hidden');
+        }
       });
     </script>
 
-   
   </body>
 </html>
