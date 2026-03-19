@@ -2,7 +2,7 @@ backend:
   name: github
   repo: your-username/your-repo-name # উদাহরণ: abid/nabadiganta-site
   branch: main
-  base_url: https://decap-cms-github-backend.vercel.app
+  base_url: https://decap-auth-gateway.justalltech1.workers.dev/
   auth_endpoint: auth
 
 media_folder: "public/images/uploads"
