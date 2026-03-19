@@ -77,15 +77,6 @@ import ContactOverlay from '../components/ContactOverlay.jsx';
       });
     </script>
 
-    <script>
-      import netlifyIdentity from 'netlify-identity-widget';
-      netlifyIdentity.init();
-      if (window.location.hash.includes("invite_token")) {
-        netlifyIdentity.open('signup');
-      }
-      netlifyIdentity.on('login', () => {
-        document.location.href = "/admin/";
-      });
-    </script>
+   
   </body>
 </html>

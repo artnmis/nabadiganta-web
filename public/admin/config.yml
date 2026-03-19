@@ -1,14 +1,17 @@
 backend:
-  name: git-gateway
-  branch: main # তোমার গিটহাব ব্রাঞ্চের নাম
+  name: github
+  repo: your-username/your-repo-name # উদাহরণ: abid/nabadiganta-site
+  branch: main
+  base_url: https://decap-cms-github-backend.vercel.app
+  auth_endpoint: auth
 
-media_folder: "public/images/uploads" # ছবিগুলো যেখানে জমা হবে
+media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "initiatives" # উদ্যোগসমূহ
+  - name: "initiatives"
     label: "Initiatives"
-    folder: "src/content/initiatives" # ডেটা যেখানে সেভ হবে
+    folder: "src/content/initiatives"
     create: true
     slug: "{{slug}}"
     fields:
@@ -17,7 +20,7 @@ collections:
       - { label: "Featured Image", name: "image", widget: "image" }
       - { label: "Date", name: "date", widget: "datetime" }
 
-  - name: "notices" # নোটিশ বোর্ড
+  - name: "notices"
     label: "Notices"
     folder: "src/content/notices"
     create: true
