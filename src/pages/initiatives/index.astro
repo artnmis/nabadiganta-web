@@ -3,12 +3,12 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
-// CMS থেকে সব Initiatives সংগ্রহ করা
+// CMS to Initiatives 
 const allInitiatives = await getCollection('initiatives');
 
 /**
- * সর্টিং লজিক: 
- * নতুন তারিখের উদ্যোগগুলো আগে দেখাবে (Descending Order)
+ * sorting: 
+ * date wise
  */
 const sortedInitiatives = allInitiatives.sort((a: CollectionEntry<'initiatives'>, b: CollectionEntry<'initiatives'>) => {
   return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
@@ -86,7 +86,7 @@ const sortedInitiatives = allInitiatives.sort((a: CollectionEntry<'initiatives'>
 </Layout>
 
 <style>
-  /* বাংলা ফন্ট সুন্দর দেখানোর জন্য সামান্য অপ্টিমাইজেশন */
+  /* font formatting */
   h1, h2 {
     line-height: 1.4;
   }

@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: artnmis/nabadiganta-web # উদাহরণ: abid/nabadiganta-site
+  repo: artnmis/nabadiganta-web 
   branch: main
   base_url: https://decap-auth-gateway.justalltech1.workers.dev/
   auth_endpoint: auth

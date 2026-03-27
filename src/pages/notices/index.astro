@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection, render } from 'astro:content';
 
-// সব নোটিশ সংগ্রহ করা এবং তারিখ অনুযায়ী সাজানো
+// sorted notice
 const allNotices = await getCollection('notices');
 const sortedNotices = allNotices.sort((a, b) => 
   new Date(b.data.date).getTime() - new Date(a.data.date).getTime()

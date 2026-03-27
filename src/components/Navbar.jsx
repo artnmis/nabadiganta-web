@@ -24,7 +24,7 @@ export default function Navbar({ pathname }) {
             </a>
           ))}
           
-          {/* Contact Us বাটন যা পপ-আপ খুলবে */}
+          {/* Contact Us button */}
           <button 
             onClick={() => setIsOpen(true)}
             className={`px-6 py-2 rounded-full transition-all duration-300 ${isModalOpen ? 'bg-blue-600 text-white shadow-md' : 'hover:bg-white hover:text-blue-600'}`}
@@ -34,7 +34,7 @@ export default function Navbar({ pathname }) {
         </div>
       </nav>
 
-      {/* পপ-আপ কম্পোনেন্ট */}
+      {/* popup component */}
       <ContactModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
     </>
   );
