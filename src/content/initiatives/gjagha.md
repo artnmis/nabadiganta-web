@@ -10,6 +10,6 @@ description: >-
   আলোচনায় শিক্ষা উন্নয়ন, বেকারত্ব দূরীকরণ, সমাজসেবা, পরিবেশ সংরক্ষণসহ বিভিন্ন সামাজিক ও মানবিক খাতে কার্যক্রম পরিচালনার বিষয়ে সমন্বিত কর্মপরিকল্পনা প্রণয়ন করা হয়। উপস্থিত সকল সদস্য তাঁদের মূল্যবান মতামত ও প্রস্তাব উপস্থাপন করেন, যা ভবিষ্যৎ কার্যক্রম নির্ধারণে গুরুত্বপূর্ণ ভূমিকা রাখে।
 
   সবার সম্মিলিত আলোচনার মাধ্যমে নবদিগন্ত যুব ফাউন্ডেশনের আগামীর পথচলা আরও সুসংগঠিত ও কার্যকর করার লক্ষ্যে কয়েকটি গুরুত্বপূর্ণ সিদ্ধান্ত গৃহীত হয়। সভা সৌহার্দ্যপূর্ণ পরিবেশে সফলভাবে সমাপ্ত হয়।
-image: https://scontent.fcgp4-2.fna.fbcdn.net/v/t39.30808-6/600297331_122136229928966569_5372937916943892316_n.jpg?stp=dst-jpg_p180x540_tt6&_nc_cat=111&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFQ_0vITvXbUZ9TiQZ5Du9WDE-P-hDKlikMT4_6EMqWKT0QPvH0gRj1RHVNaPuOAKjhIGyOBXdYWC7EvBeu21so&_nc_ohc=PzcB4qW9Z8MQ7kNvwEoccD8&_nc_oc=AdpS0AD-4FGzljs7na35sllwPSIjs1xQ5HmRHbM1sAv1XKM6T0p9TGw54V0VI2rWHcc&_nc_zt=23&_nc_ht=scontent.fcgp4-2.fna&_nc_gid=HVnLBvtb2VaA-1FbJH3D-Q&_nc_ss=8&oh=00_Afw2joff5tS16KiEGr9PD3ruTjnrCaPYWudY8dLElB908g&oe=69C1929C
+image: https://scontent.fcgp4-2.fna.fbcdn.net/v/t39.30808-6/600297331_122136229928966569_5372937916943892316_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFQ_0vITvXbUZ9TiQZ5Du9WDE-P-hDKlikMT4_6EMqWKT0QPvH0gRj1RHVNaPuOAKjhIGyOBXdYWC7EvBeu21so&_nc_ohc=S-90CQZlowoQ7kNvwFRnG58&_nc_oc=Adqtibwop35nhQpidvi-asrccrVwPkfXS6IO5swPlGAT6VTVkjwREdgh8f9tZo9FaGQ&_nc_zt=23&_nc_ht=scontent.fcgp4-2.fna&_nc_gid=jQ8oYsODIGwNfInhSuRQfw&_nc_ss=7a32e&oh=00_AfwejvwPK2YTz92iLT7MpvdzAVDXeGxIeIzsoWHs2BU3uA&oe=69CD37DC
 date: 2025-12-15T22:47:00.000+06:00
 ---
