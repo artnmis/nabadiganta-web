@@ -20,6 +20,6 @@ description: >-
   এবং একটি ন্যায্য জলবায়ু ভবিষ্যৎ গড়া।
 
   আসুন—কথা নয়, এবার কাজ।
-image: https://scontent.fcgp4-1.fna.fbcdn.net/v/t39.30808-6/605219452_122138885792966569_7703899259954750273_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=102&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGJjwaIguvGoAq3gaHFMkxdWC-r1wSVqQ9YL6vXBJWpD9lL6aE4_BwOfqD-DqFySXu6t3LxslA5HkMd-HE3ncqh&_nc_ohc=6sl22X3Jl4oQ7kNvwGUZFki&_nc_oc=AdqRRdufd9AW5mO25VWOpJeKAQGVPQS1YkMRurYF05qfxae7wkncPRGzmVJk4gTNXlw&_nc_zt=23&_nc_ht=scontent.fcgp4-1.fna&_nc_gid=aZtAQrqA4il8cts-y8mbhw&_nc_ss=7a32e&oh=00_AfxHkECg6gmq_ArijeYjzls8oEHwH7Q5Mwcb0Lsan0Dp1A&oe=69CD57D8
+image: /images/uploads/605219452_122138885792966569_7703899259954750273_n.jpg
 date: 2025-12-30T22:48:00.000+06:00
 ---
