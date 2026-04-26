@@ -17,6 +17,6 @@ description: >
   ৩. ইতিহাদ
 
   ৪. মাতামুহুরী মহিলা সমিতি
-image: https://scontent.fcgp4-2.fna.fbcdn.net/v/t39.30808-6/587823087_122132352878966569_6598916370062934530_n.jpg?stp=dst-jpg_s720x720_tt6&_nc_cat=108&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFPhkz1VNMxCgS1Pb_0jJjLDwQAOSqn_MgPBAA5Kqf8yEGwtHqX2X1hy0sEmsxfzWKgu8uCP3O0lavRCUtogQzu&_nc_ohc=Ml0AMiyIs7cQ7kNvwFZWYUl&_nc_oc=Adr5PcZjI-Dmzp7sKvEnrrGplGZOKcfL6P_G5W5WN6_yzM2ucdCwUQ_KMgOz4F4V0yk&_nc_zt=23&_nc_ht=scontent.fcgp4-2.fna&_nc_gid=y5OJOSO0YQx4kXRSQhuhAA&_nc_ss=7a32e&oh=00_Afz-bS_uhGf6RkWAzoqeIMWnAAF2kh_U9PinOoXRimfh_Q&oe=69CD426B
+image: /images/uploads/587823087_122132352878966569_6598916370062934530_n.jpg
 date: 2026-03-18T23:14:00.000+06:00
 ---
